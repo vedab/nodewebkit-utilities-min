@@ -1,0 +1,29 @@
+{
+  "name": "nodewebkit-utilities"
+  , "main": "index.html"
+  , "description": "NodeWebkit Utilities; like Git Markdown Editor, CSS Parser"
+  , "window": {
+      "toolbar": false
+    , "width": 800
+    , "height": 800
+  }
+  , "scripts": {
+     "start": "nodewebkit"
+  }
+  , "dependencies": {
+	  "css" : "git://github.com/reworkcss/css"
+	, "jquery" : "git://github.com/jquery/jquery"
+	, "markdown" : "git://github.com/evilstreak/markdown-js"
+	, "nodewebkit" : "git://github.com/shama/nodewebkit"
+  }
+  ,"keywords": [
+     "nodewebkit",
+	 "markdown",
+     "editor",
+	 "css"
+  ]
+  ,"repository" :{ 
+      "type" : "git"
+    , "url" : "http://github.com/vedab/git-markdown-editor-nodewebkit.git"
+  }
+}

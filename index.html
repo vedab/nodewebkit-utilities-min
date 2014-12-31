@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Markdown editor</title>
+	<style type="text/css">
+	body, header {width: 100%;}
+	section {width: 45%; border: 1px solid #777; overflow: auto; margin: 0; height: 200px;}
+	section.editor { float: left;}
+	section.editor textarea { width:95%; height: 90%}
+	section.view { float: right; word-wrap:break-word;}
+	</style>
+	<script>
+    var markdown = require('markdown').markdown;
+	var $ = require("jquery");
+	$(function(){
+		var $editor = $("#markdown_editor textarea")
+		  , $mark = $("#markdown_view");
+		
+		$editor.on('keyup', function(){
+			$mark.html(markdown.toHTML($editor[0].value));
+		})
+		.keyup();
+	});
+
+	//CSS parser
+	var css = require('css');
+	$(function(){
+		var $editor = $("#css_editor textarea")
+		  , $mark = $("#css_view");
+		
+		$editor.on('keyup', function(){
+			var cssObj = css.parse($editor[0].value, {silent:true});
+			$mark.html(css.stringify(cssObj, {compress:true}) +
+						"<br/> # of Rules="+cssObj.stylesheet.rules.length +
+						"<br/> # of Selectors="+ (function(_cssObj){
+							var cnt = 0;
+							$.each(_cssObj.stylesheet.rules, function(i,o){
+								cnt += (o && o.selectors && o.selectors.length)? o.selectors.length : 0;
+							});
+							return cnt;
+						})(cssObj));
+		})
+		.keyup();
+	});
+
+    </script>
+</head>
+  <body>
+	<header>
+    <h1>Utilities using Node Webkit</h1>
+	<h4>NodeJS version(<script>document.write(process.version)</script>).</h4>
+	</header>
+	
+	<h1>Markdown Editor</h1>
+	<h3>Editor to create README.md files for GitHub</h3>
+	<section id="markdown_editor" class="editor">
+	<textarea width="100%" height="100%">
+# Header
+
+First line of Markdown
+
+## Header 1 goes here
+
+A List will start
+
+ - Item 1
+ - Item 2
+
+ etc
+
+### Sub Header
+	</textarea>
+	</section>
+	
+	<section id="markdown_view" class="view">
+	</section>
+
+	<div style="clear:both;"></div>
+	<h1>CSS Parser</h1>
+	<h3>Find the number of selectors and rules used in your CSS</h3>
+	<section id="css_editor" class="editor">
+	<textarea width="100%" height="100%">
+/* style sheet */
+body, header {
+	width: 100%;
+}
+section {
+	width: 45%;
+	border: 1px solid #f2f2f2;
+}
+section.editor { 
+	float: left;
+}
+section.view { 
+	float: right; 
+	word-wrap:break-word;
+}
+	</textarea>
+	</section>
+	<hl/>
+	<section id="css_view" class="view">
+	</section>
+
+</body>
+</html>
