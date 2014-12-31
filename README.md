@@ -1,4 +1,10 @@
-# Git Markdown Editor using Node Webkit
+# Node Webkit Utilities
+
+This project hosts couple of utilities built using NodeWebkit, which will let you have a desktop application using JavaScript.
+
+Utilities:
+  - Git Markdown Editor
+  - CSS Parser - counts the `# of Rules` and `# of Selectors` in a CSS code
 
 ## Prerequisite
   - Install [Node JS](http://nodejs.org/)
